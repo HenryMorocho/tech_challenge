@@ -94,7 +94,8 @@ func main() {
 	//Timer allows for Device Processing after initial creation of device
 	timer1 := time.NewTimer(45 * time.Second)
 	<-timer1.C
-
+	
+	//Extracted device Id to then concatenate with url3
 	together := []string{url3, r.Id}
 	req, err = http.NewRequest("DELETE", strings.Join(together, "/"), nil)
 	req.Header.Set("X-Auth-Token", "wbrYPDxpE1y8bT95WknGyJgrwPdsteVw")
