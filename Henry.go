@@ -41,15 +41,17 @@ func getDeviceInfo(body []byte) (*obj1, error) {
 }
 
 func main() {
+	// URL's with specific endpoints
 	url1 := "https://api.packet.net/projects"
 	url2 := "https://api.packet.net/projects/ca73364c-6023-4935-9137-2132e73c20b4/devices"
 	url3 := "https://api.packet.net/devices"
 	fmt.Println("URL:>", url1)
-
+	//Requesting a GET, for recieving project detials
 	req, err := http.NewRequest("GET", url1, nil)
 	if err != nil {
 		panic(err)
 	}
+	//Authentication, Packet API requires an API token in the header of new request
 	req.Header.Set("X-Auth-Token", "wbrYPDxpE1y8bT95WknGyJgrwPdsteVw")
 	req.Header.Set("Accept", "application/json")
 
@@ -63,7 +65,7 @@ func main() {
 	body, err := ioutil.ReadAll(resp.Body)
 
 	fmt.Println("Creating Device")
-
+	//Creating a device with specific detials and proper JSON format
 	device := []byte(`{"facility": "ewr1","plan":"t1.small.x86","operating_system":"ubuntu_16_04"}`)
 	req, err = http.NewRequest("POST", url2, bytes.NewBuffer(device))
 	req.Header.Set("X-Auth-Token", "wbrYPDxpE1y8bT95WknGyJgrwPdsteVw")
@@ -89,6 +91,7 @@ func main() {
 
 	fmt.Println("Device:\n Id:", r.Id, "\nSate:", r.State)
 	fmt.Println("Deleting Device...")
+	//Timer allows for Device Processing after initial creation of device
 	timer1 := time.NewTimer(45 * time.Second)
 	<-timer1.C
 
