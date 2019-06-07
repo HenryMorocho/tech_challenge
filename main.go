@@ -142,7 +142,7 @@ func main() {
 	deviceId, deviceStat := PostRequestMethod("POST", url2)
 	fmt.Println("device: [\n   { Id:", deviceId, "\n     Status:", deviceStat, "\n   }\n]")
 	fmt.Println("Datacenter is provisioning device.")
-	timer1 := time.NewTimer(45 * time.Second)
+	timer1 := time.NewTimer(60 * time.Second)
 	<-timer1.C
 	deleteDevice := DeleteDevice("DELETE", url3, deviceId)
 	fmt.Println("Response Satuts: ", deleteDevice)
