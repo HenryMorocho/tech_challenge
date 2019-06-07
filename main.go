@@ -33,7 +33,7 @@ func getProjects(body []byte) (*obj, error) {
 	var s = new(obj)
 	err := json.Unmarshal(body, &s)
 	if err != nil {
-		fmt.Println("whoops:", err)
+		fmt.Println("Something went wrong:", err)
 	}
 	return s, err
 }
@@ -42,7 +42,7 @@ func getDeviceInfo(body []byte) (*device, error) {
 	var s = new(device)
 	err := json.Unmarshal(body, &s)
 	if err != nil {
-		fmt.Println("whoops:", err)
+		fmt.Println("Something went wrong:", err)
 	}
 	return s, err
 }
